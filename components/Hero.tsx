@@ -8,8 +8,8 @@ export function Hero() {
         <div className="flex items-center gap-3 mb-8 text-sm text-ink-200">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02]">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-lime" />
             </span>
             Disponible para nuevos proyectos
           </span>
@@ -32,7 +32,7 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-ink-900 font-medium hover:bg-accent-300 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-lime text-ink-900 font-medium hover:bg-lime-400 transition-colors"
           >
             Hablemos del proyecto
             <span aria-hidden>-&gt;</span>

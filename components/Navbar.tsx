@@ -32,7 +32,7 @@ export function Navbar() {
         </ul>
         <Link
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-ink-900 text-sm font-medium hover:bg-accent-300 transition-colors"
+          className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime text-ink-900 text-sm font-medium hover:bg-lime-400 transition-colors"
         >
           Empezar proyecto
         </Link>

@@ -22,7 +22,7 @@ export function Contact() {
             <div className="mt-10 space-y-3 text-ink-100">
               <a
                 href={`mailto:${contact.email}`}
-                className="block text-xl md:text-2xl font-medium hover:text-accent transition-colors"
+                className="block text-xl md:text-2xl font-medium hover:text-lime transition-colors"
               >
                 {contact.email}
               </a>
@@ -61,13 +61,13 @@ export function Contact() {
                 name="mensaje"
                 rows={5}
                 required
-                className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-4 py-3 text-ink-50 placeholder:text-ink-300 focus:outline-none focus:border-accent transition-colors resize-none"
+                className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-4 py-3 text-ink-50 placeholder:text-ink-300 focus:outline-none focus:border-lime transition-colors resize-none"
                 placeholder="Que tienes en mente, plazos, presupuesto aproximado..."
               />
             </div>
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-ink-900 font-medium hover:bg-accent-300 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-lime text-ink-900 font-medium hover:bg-lime-400 transition-colors"
             >
               Enviar mensaje
               <span aria-hidden>-&gt;</span>
@@ -103,7 +103,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-4 py-3 text-ink-50 placeholder:text-ink-300 focus:outline-none focus:border-accent transition-colors"
+        className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-4 py-3 text-ink-50 placeholder:text-ink-300 focus:outline-none focus:border-lime transition-colors"
       />
     </div>
   );
