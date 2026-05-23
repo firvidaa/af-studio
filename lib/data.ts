@@ -15,66 +15,62 @@ export type Project = {
 
 export const services: Service[] = [
   {
-    title: "Identidad de marca",
+    title: "Escaneado",
     description:
-      "Disenamos sistemas visuales solidos: logo, paleta, tipografia, voz y guidelines.",
-    bullets: ["Naming y posicionamiento", "Logo y sistema visual", "Brand guidelines"],
+      "Capturamos la geometría real de tu pieza o conjunto con escaneo 3D de alta precisión. Salida lista para CAD o ingeniería inversa.",
+    bullets: [
+      "Escaneo 3D de piezas y conjuntos",
+      "Captura de superficies complejas",
+      "Mallas listas para CAD",
+    ],
   },
   {
-    title: "Web y producto digital",
+    title: "Ingeniería inversa",
     description:
-      "Sitios web rapidos, accesibles y orientados a conversion. Tambien apps a medida.",
-    bullets: ["Landing pages", "Web corporativa", "Productos a medida"],
+      "Reconstruimos en CAD paramétrico cualquier pieza física o malla escaneada — lista para modificar, validar o fabricar.",
+    bullets: [
+      "Reconstrucción CAD paramétrica",
+      "Análisis dimensional",
+      "Documentación técnica",
+    ],
   },
   {
-    title: "Estrategia y direccion",
+    title: "Prototipaje / Diseño final",
     description:
-      "Acompano a equipos en la definicion de producto, roadmap y experiencia.",
-    bullets: ["Auditoria de marca", "Roadmap de producto", "Direccion de proyecto"],
+      "Del primer prototipo funcional a la pieza final lista para instalar. Validación física en cada iteración.",
+    bullets: [
+      "Prototipos funcionales",
+      "Impresión 3D técnica (PA12·CF, PETG-CF…)",
+      "Pieza final validada",
+    ],
   },
 ];
 
 export const projects: Project[] = [
   {
-    title: "Norte Estudio",
-    category: "Identidad + Web",
+    title: "Renault 11 Turbo",
+    category: "Restauración / Pieza única",
     year: "2025",
     description:
-      "Sistema de marca y sitio web para un estudio de arquitectura del norte.",
-    tags: ["Branding", "Next.js", "CMS"],
-  },
-  {
-    title: "Helio",
-    category: "Producto digital",
-    year: "2025",
-    description:
-      "App SaaS para gestion energetica de pequenas comunidades. Diseno de producto + frontend.",
-    tags: ["Producto", "UX", "Dashboard"],
-  },
-  {
-    title: "Casa Mar",
-    category: "Web a medida",
-    year: "2024",
-    description:
-      "Sitio editorial para una marca gastronomica costera, con catalogo y reservas.",
-    tags: ["Web", "Editorial", "E-commerce"],
-  },
-  {
-    title: "Tipo Foundry",
-    category: "Identidad",
-    year: "2024",
-    description:
-      "Identidad y especimen digital para una pequena fundicion tipografica independiente.",
-    tags: ["Branding", "Tipografia"],
+      "Escaneado, ingeniería inversa e impresión 3D de una pieza para el clásico francés. Reconstrucción CAD lista para reimpresión bajo demanda.",
+    tags: ["3D Scan", "Ing. inversa", "PA12·CF"],
   },
 ];
 
 export const contact = {
-  email: "hola@afstudio.example",
-  location: "Espana",
+  email: "afirvidastudio@gmail.com",
+  phone: "+34 694 295 842",
+  phoneHref: "https://wa.me/34694295842",
+  location: "Ourense · Galicia",
   social: [
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "GitHub", href: "https://github.com" },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/afirvida.studio?igsh=MjNycmtwdWhwdm12",
+    },
+    {
+      label: "Wallapop",
+      href: "https://es.wallapop.com/user/alfredof-303495134",
+    },
+    { label: "WhatsApp", href: "https://wa.me/34694295842" },
   ],
 };
