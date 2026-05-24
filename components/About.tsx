@@ -2,7 +2,7 @@ import { SectionLabel } from "./SectionLabel";
 
 export function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 border-t border-white/5">
+    <section id="about" className="pt-16 lg:pt-24 pb-24 lg:pb-32">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">

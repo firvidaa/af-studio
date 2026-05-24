@@ -4,7 +4,7 @@ import { SectionLabel } from "./SectionLabel";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-24 lg:pt-44 lg:pb-32 overflow-hidden">
+    <section className="relative pt-32 pb-12 lg:pt-44 lg:pb-16 overflow-hidden">
       <div className="absolute inset-0 glow pointer-events-none" />
       <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center gap-10 lg:gap-12 xl:gap-16">
@@ -52,26 +52,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <Stat value="10" label="Proyectos entregados" />
-          <Stat value="5" label="Coches en pista" />
-          <Stat value="100%" label="Trabajo a medida" />
-          <Stat value="OU/GZ" label="Base del estudio" />
-        </div>
       </div>
     </section>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="pt-4 border-t border-white/10">
-      <div className="text-3xl md:text-4xl font-medium text-ink-50 tracking-tight">
-        {value}
-      </div>
-      <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-200 leading-relaxed">
-        {label}
-      </div>
-    </div>
   );
 }

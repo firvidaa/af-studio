@@ -87,6 +87,16 @@ highlight #00A88A   verde claro (glow del hero)
   - **Email real cableado**: `afirvidastudio@gmail.com` en `lib/data.ts`. El link `mailto:` del Contact y el botón "Enviar mensaje" del form ya apuntan ahí.
   - **Pendiente del usuario**: confirmar descripción concreta de la pieza del Renault 11 Turbo si quiere afinar el texto.
 - **2026-05-24 — Hero con logo AF grande a la derecha:** layout pasa a grid `lg:grid-cols-[minmax(0,1fr)_auto]`. Logo `text-ink-50` a `h-[23.2rem]` (lg) / `h-[29rem]` (xl) — el usuario pidió +45% sobre el inicial `h-64/h-80`. Headline reducido un punto en lg (`text-6xl xl:text-7xl`) para que respire al perder ancho. Mobile sigue siendo una sola columna sin logo grande en hero. Commit `deea4c4` pushed a `origin/main`. Repo público: `github.com/firvidaa/af-studio`. Vercel conectado para auto-deploy.
+- **2026-05-24 — Rediseño de la transición Hero → About (huecos vacíos):** usuario marcó captura con ~256px de aire vacío entre stats del Hero y titular de About. Solución estructural:
+  - **Stats extraídos del Hero** a su propio componente `components/Stats.tsx`. Renderizado como banda independiente en `app/page.tsx` entre `<Hero />` y `<About />`.
+  - Banda Stats: `py-8 lg:py-12 border-b border-white/10`. Sin `border-t` — la sección fluye desde el Hero sin línea dura arriba; los hairlines pequeños de cada stat (`pt-4 border-t border-white/10`) ya marcan la entrada visual.
+  - **Hero**: `pb` reducido de `pb-24 lg:pb-32` → `pb-12 lg:pb-16`.
+  - **About**: ya no tiene `border-t border-white/5` (la banda Stats lo cumple). Padding cambiado de `py-24 lg:py-32` → `pt-16 lg:pt-24 pb-24 lg:pb-32`.
+  - Resultado: la banda hace de bisagra editorial entre Hero y About en vez de stats orphan con ~256px de vacío detrás. Móvil queda igual de bien (no se tocó).
+- **2026-05-25 — Banda Stats: líneas full-width y padding simétrico:**
+  - Iteración 1 (descartada): hairlines individuales arriba de cada stat (4 cortas) → usuario pidió línea continua.
+  - Iteración 2 (descartada): `border-t` movido al grid container → línea continua pero confinada al `max-w-6xl` (no llega a los bordes del viewport como la `border-b` de la sección).
+  - **Iteración 3 (aplicada):** `border-t` y `border-b` ambos en el `<section>` (full-width edge-to-edge). Eliminado `pt-4` del grid. Padding sección `py-12 lg:py-14` para separación simétrica arriba/abajo de las cifras. Resultado: dos rayitas paralelas de punta a punta con las cifras centradas verticalmente entre ellas.
 - **2026-05-24 — Portfolio: grid de tarjetas con placeholders estilo PDF:**
   - Layout pasa de lista (1 fila por proyecto) a **grid `sm:grid-cols-2 lg:grid-cols-3`** con tarjetas aspect `4/3`.
   - Cada tarjeta: borde sutil, `bg-white/[0.02]`, overlay de **diagonal stripes** vía CSS `repeating-linear-gradient` (135deg, opacity 0.06) cuando es placeholder.
@@ -117,7 +127,36 @@ highlight #00A88A   verde claro (glow del hero)
 | 2026-05-23  | Marca  | Logo "AF Studio" provisto por el usuario (SVG). Se usa solo el wordmark **AF** (sin "studio") como mark del Navbar (h-[3.6rem], +20% sobre h-12) y del Footer (h-10). Inline SVG con `fill="currentColor"` para que herede color desde CSS. | El SVG original es una placa vertical 720×1280 con las letras carveadas. Sobre fondo verde oscuro la placa negra sería invisible; extrayendo solo los sub-paths de A y F (en `components/Logo.tsx`) obtenemos un wordmark coloreable. La parte "studio" se descarta a petición del usuario. |
 | 2026-05-23  | Social | Enlace al perfil de Wallapop (`alfredof-303495134`) en el Footer, como icono custom (speech bubble + W). Estado normal `text-ink-200`. Hover: pasa a `text-accent` (racing green) y rota 360° en 700ms. | El usuario sólo pidió "verde" — se usa el **accent** racing green de marca (no el lime de CTAs) porque Wallapop tiene paleta verdosa y `accent` lee como su color natural. El giro 360 es el rasgo lúdico pedido. |
 
-## Estado actual (cierre 2026-05-23)
+## Estado actual (cierre 2026-05-25)
+
+### Lo que está en producción (Vercel, auto-deploy desde `origin/main`)
+
+- **Paleta AMR24 Modern**, **logo AF custom** en Navbar + Footer, **tipografía editorial completa** (Fraunces + JetBrains Mono + Inter), **sistema editorial** (`SectionLabel`, voz "una palabra italic por sección"), **pivot motorsport** (servicios = Escaneado / Ing. inversa / Prototipaje, base Ourense · Galicia, contacto real con `afirvidastudio@gmail.com` + `+34 694 295 842`).
+- **Navbar mobile-first** (`"use client"`): iconos sociales siempre visibles + hamburger drawer con nav links y CTA. Tres iconos sociales (WhatsApp · Instagram · Wallapop) neutrales por defecto, color de marca al hover.
+- **Hero**: SectionLabel "AF Studio / Diseño y impresión 3D", headline serif con italic en *motorsport*, AF logo grande a la derecha (`h-[23.2rem]` lg / `h-[29rem]` xl). Mobile: una columna sin AF grande (navbar ya tiene el wordmark).
+- **Stats** extraídos del Hero a banda independiente entre Hero y About — `border-t border-b` full-width, padding simétrico `py-12 lg:py-14`. 4 cifras: 10 / 5 / 100% / OU/GZ.
+- **Portfolio**: grid `sm:grid-cols-2 lg:grid-cols-3` de 6 tarjetas con diagonal stripes + categoría centrada + "Foto pendiente" + flecha ↗ que va a lime al hover. Reales: Renault 11 Turbo · Porsche 924 Turbo. Placeholders por categoría: Aero · Interior · Chasis · Mecánico.
+- **Repo**: `github.com/firvidaa/af-studio` (público). **Vercel**: auto-deploy desde `main`.
+
+### Sin commitear al cerrar
+
+- `components/Stats.tsx` (nuevo)
+- `components/Hero.tsx` (pb reducido, stats extraídos, helper `Stat` eliminado)
+- `components/About.tsx` (`border-t` quitado, padding asimétrico pt/pb)
+- `app/page.tsx` (import + render de `<Stats />`)
+- `docs/bitacora.md` (esta misma)
+
+## Próximos pasos (sesión de mañana)
+
+1. **Empujar el bloque de hoy** (banda Stats + transición Hero→About) — un solo commit, mensaje sugerido: `feat(layout): extract stats into bridge band between Hero and About`.
+2. **Pendiente de la lista anterior**:
+   - C. Polish de hairlines en el resto de transiciones de sección (About→Services, Services→Portfolio, Portfolio→Contact) — ahora la transición Hero→About queda muy resuelta, las otras todavía son `border-t border-white/5` genéricas y rompen el ritmo.
+   - D. Repaso fino de copy (About, Contact) tras pivot motorsport — buscar últimas incoherencias.
+   - E. Largo plazo: tratamiento del grano del fondo, monograma de marca AF.
+3. **Variantes mobile del Hero**: el AF grande sigue `hidden lg:flex`. Si tras revisar mobile el hero se siente vacío, decidir si meter una variante pequeña.
+4. **Renault 11 Turbo / Porsche 924 Turbo**: pendiente descripción concreta de las piezas. Cuando haya fotos, sustituir el placeholder de la tarjeta por una imagen real (flag `placeholder: false` en `lib/data.ts`).
+
+## Estado anterior (cierre 2026-05-23) — referencia histórica
 
 ### Lo que está funcionando en local
 
