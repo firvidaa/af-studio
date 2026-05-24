@@ -20,39 +20,47 @@ export function Portfolio() {
           </p>
         </div>
 
-        <ul className="divide-y divide-white/5 border-y border-white/5">
-          {projects.map((p, idx) => (
-            <li
-              key={p.title}
-              className="group grid grid-cols-12 gap-4 py-8 items-baseline hover:bg-white/[0.02] transition-colors px-4 -mx-4 rounded-lg"
-            >
-              <div className="col-span-12 md:col-span-1 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-200">
-                {String(idx + 1).padStart(2, "0")}
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {projects.map((p) => (
+            <li key={p.code}>
+              <div className="group relative aspect-[4/3] rounded-lg border border-white/10 bg-white/[0.02] overflow-hidden hover:bg-white/[0.04] hover:border-white/20 transition-colors">
+                {p.placeholder && (
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(135deg, transparent 0 12px, rgba(240,245,241,0.06) 12px 13px)",
+                    }}
+                  />
+                )}
+
+                <div className="absolute top-4 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-200">
+                  {p.code}
+                </div>
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                  <p className="font-mono text-sm md:text-base uppercase tracking-[0.25em] text-ink-100">
+                    {p.category}
+                  </p>
+                  {p.placeholder && (
+                    <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-300">
+                      Foto pendiente
+                    </p>
+                  )}
+                </div>
+
+                <div
+                  aria-hidden
+                  className="absolute bottom-4 right-4 text-ink-200 group-hover:text-lime transition-colors text-lg"
+                >
+                  ↗
+                </div>
               </div>
-              <div className="col-span-12 md:col-span-4">
-                <h3 className="font-serif text-2xl md:text-3xl font-medium tracking-tight leading-tight">
-                  {p.title}
-                </h3>
-              </div>
-              <div className="col-span-6 md:col-span-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-200">
-                {p.category}
-              </div>
-              <div className="col-span-6 md:col-span-3 text-ink-100 text-sm leading-relaxed">
-                {p.description}
-              </div>
-              <div className="col-span-12 md:col-span-1 text-right font-mono text-[11px] uppercase tracking-[0.15em] text-ink-200">
-                {p.year}
-              </div>
-              <div className="col-span-12 flex flex-wrap gap-2 mt-2">
-                {p.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-[10px] uppercase tracking-[0.15em] px-2 py-1 rounded-full border border-white/10 text-ink-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+
+              <h3 className="mt-4 font-serif text-xl md:text-2xl font-medium tracking-tight leading-tight">
+                {p.title}
+              </h3>
             </li>
           ))}
         </ul>

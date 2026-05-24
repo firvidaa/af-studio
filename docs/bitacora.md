@@ -87,6 +87,14 @@ highlight #00A88A   verde claro (glow del hero)
   - **Email real cableado**: `afirvidastudio@gmail.com` en `lib/data.ts`. El link `mailto:` del Contact y el botón "Enviar mensaje" del form ya apuntan ahí.
   - **Pendiente del usuario**: confirmar descripción concreta de la pieza del Renault 11 Turbo si quiere afinar el texto.
 - **2026-05-24 — Hero con logo AF grande a la derecha:** layout pasa a grid `lg:grid-cols-[minmax(0,1fr)_auto]`. Logo `text-ink-50` a `h-[23.2rem]` (lg) / `h-[29rem]` (xl) — el usuario pidió +45% sobre el inicial `h-64/h-80`. Headline reducido un punto en lg (`text-6xl xl:text-7xl`) para que respire al perder ancho. Mobile sigue siendo una sola columna sin logo grande en hero. Commit `deea4c4` pushed a `origin/main`. Repo público: `github.com/firvidaa/af-studio`. Vercel conectado para auto-deploy.
+- **2026-05-24 — Portfolio: grid de tarjetas con placeholders estilo PDF:**
+  - Layout pasa de lista (1 fila por proyecto) a **grid `sm:grid-cols-2 lg:grid-cols-3`** con tarjetas aspect `4/3`.
+  - Cada tarjeta: borde sutil, `bg-white/[0.02]`, overlay de **diagonal stripes** vía CSS `repeating-linear-gradient` (135deg, opacity 0.06) cuando es placeholder.
+  - Anatomía: código mono top-left (`P-01 · 3DS-001`) · categoría grande centrada en mono uppercase · "Foto pendiente" debajo si placeholder · flecha `↗` bottom-right que pasa a lime al hover.
+  - Título serif **debajo** de la tarjeta (Renault 11 Turbo / Porsche 924 Turbo / Próximo proyecto).
+  - **Eliminada la meta line** que iba debajo (materiales, horas) por petición del usuario. Solo título.
+  - **6 proyectos** en `lib/data.ts`: 2 reales (Renault 11 Turbo · Porsche 924 Turbo, ambos `Restauración`) + 4 placeholders por categoría (Aero · Interior · Chasis · Mecánico).
+  - `Project` type simplificado: `code`, `category`, `title`, `placeholder` (campos opcionales `year`, `description`, `tags` se mantienen para detalle futuro).
 - **2026-05-24 — Navbar mobile-first (`Navbar.tsx` → "use client"):**
   - Iconos sociales (WhatsApp · Instagram · Wallapop) ahora **siempre visibles** en cualquier viewport (antes `hidden md:flex`).
   - CTA "Empezar proyecto" sigue oculto en mobile (vive dentro del drawer del hamburger).

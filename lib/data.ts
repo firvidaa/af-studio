@@ -5,12 +5,14 @@ export type Service = {
 };
 
 export type Project = {
-  title: string;
+  code: string;
   category: string;
-  year: string;
-  description: string;
-  tags: string[];
+  title: string;
+  placeholder?: boolean;
   href?: string;
+  year?: string;
+  description?: string;
+  tags?: string[];
 };
 
 export const services: Service[] = [
@@ -48,12 +50,40 @@ export const services: Service[] = [
 
 export const projects: Project[] = [
   {
+    code: "P-01 · 3DS-001",
+    category: "Restauración",
     title: "Renault 11 Turbo",
-    category: "Restauración / Pieza única",
-    year: "2025",
-    description:
-      "Escaneado, ingeniería inversa e impresión 3D de una pieza para el clásico francés. Reconstrucción CAD lista para reimpresión bajo demanda.",
-    tags: ["3D Scan", "Ing. inversa", "PA12·CF"],
+    placeholder: true,
+  },
+  {
+    code: "P-02 · 3DS-002",
+    category: "Restauración",
+    title: "Porsche 924 Turbo",
+    placeholder: true,
+  },
+  {
+    code: "P-03 · AERO-001",
+    category: "Aero",
+    title: "Próximo proyecto",
+    placeholder: true,
+  },
+  {
+    code: "P-04 · INT-001",
+    category: "Interior",
+    title: "Próximo proyecto",
+    placeholder: true,
+  },
+  {
+    code: "P-05 · CHA-001",
+    category: "Chasis",
+    title: "Próximo proyecto",
+    placeholder: true,
+  },
+  {
+    code: "P-06 · MEC-001",
+    category: "Mecánico",
+    title: "Próximo proyecto",
+    placeholder: true,
   },
 ];
 
