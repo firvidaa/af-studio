@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { SiInstagram, SiWhatsapp } from "react-icons/si";
 import { Logo } from "./Logo";
 
@@ -10,16 +14,20 @@ const links = [
 ];
 
 export function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink-900/60 border-b border-white/5">
-      <nav className="max-w-6xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <nav className="max-w-6xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
         <Link
           href="/"
           aria-label="AF Studio — Inicio"
-          className="text-ink-50 hover:text-lime transition-colors"
+          onClick={() => setOpen(false)}
+          className="text-ink-50 hover:text-lime transition-colors shrink-0"
         >
           <Logo className="h-[3.6rem] w-auto" />
         </Link>
+
         <ul className="hidden md:flex items-center gap-8 text-sm text-ink-200">
           {links.map((link) => (
             <li key={link.href}>
@@ -32,7 +40,8 @@ export function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="hidden md:flex items-center gap-4">
+
+        <div className="flex items-center gap-2 md:gap-4">
           <div className="flex items-center gap-2">
             <a
               href="https://wa.me/34694295842"
@@ -62,14 +71,53 @@ export function Navbar() {
               <WallapopIcon className="w-4 h-4" />
             </a>
           </div>
+
           <Link
             href="#contact"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime text-ink-900 text-sm font-medium hover:bg-lime-400 transition-colors"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime text-ink-900 text-sm font-medium hover:bg-lime-400 transition-colors"
           >
             Empezar proyecto
           </Link>
+
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+            className="md:hidden inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/[0.06] border border-white/10 text-ink-50 transition-colors hover:bg-white/[0.1]"
+          >
+            {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
         </div>
       </nav>
+
+      {open && (
+        <div className="md:hidden border-t border-white/5 bg-ink-900/95 backdrop-blur-md">
+          <ul className="max-w-6xl mx-auto px-6 py-4 space-y-1">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-200 hover:text-ink-50 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li className="pt-4 mt-3 border-t border-white/5">
+              <Link
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-lime text-ink-900 text-sm font-medium hover:bg-lime-400 transition-colors"
+              >
+                Empezar proyecto
+                <span aria-hidden>→</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

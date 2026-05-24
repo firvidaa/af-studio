@@ -86,6 +86,15 @@ highlight #00A88A   verde claro (glow del hero)
   - **Portfolio**: `projects` reducido a 1 entrada — `Renault 11 Turbo` (Restauración / Pieza única, 2025, tags `3D Scan · Ing. inversa · PA12·CF`). Side-copy reescrito a "El estudio acaba de arrancar. Aquí irán los proyectos conforme entren nuevos coches al taller."
   - **Email real cableado**: `afirvidastudio@gmail.com` en `lib/data.ts`. El link `mailto:` del Contact y el botón "Enviar mensaje" del form ya apuntan ahí.
   - **Pendiente del usuario**: confirmar descripción concreta de la pieza del Renault 11 Turbo si quiere afinar el texto.
+- **2026-05-24 — Hero con logo AF grande a la derecha:** layout pasa a grid `lg:grid-cols-[minmax(0,1fr)_auto]`. Logo `text-ink-50` a `h-[23.2rem]` (lg) / `h-[29rem]` (xl) — el usuario pidió +45% sobre el inicial `h-64/h-80`. Headline reducido un punto en lg (`text-6xl xl:text-7xl`) para que respire al perder ancho. Mobile sigue siendo una sola columna sin logo grande en hero. Commit `deea4c4` pushed a `origin/main`. Repo público: `github.com/firvidaa/af-studio`. Vercel conectado para auto-deploy.
+- **2026-05-24 — Navbar mobile-first (`Navbar.tsx` → "use client"):**
+  - Iconos sociales (WhatsApp · Instagram · Wallapop) ahora **siempre visibles** en cualquier viewport (antes `hidden md:flex`).
+  - CTA "Empezar proyecto" sigue oculto en mobile (vive dentro del drawer del hamburger).
+  - Añadido botón hamburger (`Menu`/`X` de lucide-react) solo visible `md:hidden`. Toggle con `useState`.
+  - Drawer mobile: panel debajo del navbar con `bg-ink-900/95 backdrop-blur-md`, lista de nav links en font-mono uppercase tracking, separador y CTA al final.
+  - Click en cualquier link del drawer cierra el menú (`setOpen(false)`).
+  - Click en el logo AF también cierra el drawer si está abierto.
+  - **Decisión sobre AF grande del Hero en mobile**: se mantiene `hidden lg:flex`. Razón: el navbar ya muestra el wordmark AF en mobile, duplicar la marca grande competiría con el titular y robaría altura. Si el usuario lo quiere distinto, fácil de añadir como variante pequeña.
 - **2026-05-24 — Pivot de posicionamiento a motorsport (decisión del usuario):** el estudio pasa de "marca + producto digital" a **diseño 3D + prototipaje para motorsport**. Cambios aplicados:
   - **Hero**: SectionLabel `AF / Motorsport · Disponible T26`. Headline reescrito a `Diseño 3D a medida para motorsport` (italic en `motorsport`). Lead reescrito hacia 3D + prototipaje + validación en pista.
   - **Hero stats**: `10 / Proyectos entregados` · `5 / Coches en pista` · `100% / Trabajo a medida` · `BCN / Base del estudio` (los valores son provisionales, fáciles de ajustar en `Hero.tsx`).
