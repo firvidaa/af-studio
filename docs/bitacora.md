@@ -93,6 +93,40 @@ highlight #00A88A   verde claro (glow del hero)
   - **Hero**: `pb` reducido de `pb-24 lg:pb-32` → `pb-12 lg:pb-16`.
   - **About**: ya no tiene `border-t border-white/5` (la banda Stats lo cumple). Padding cambiado de `py-24 lg:py-32` → `pt-16 lg:pt-24 pb-24 lg:pb-32`.
   - Resultado: la banda hace de bisagra editorial entre Hero y About en vez de stats orphan con ~256px de vacío detrás. Móvil queda igual de bien (no se tocó).
+- **2026-05-25 (noche, redesign) — Página de detalle "Spec Sheet Editorial":**
+  - Reescritura completa de `app/proyectos/[slug]/page.tsx` y galería en `components/Gallery.tsx` a bento.
+  - **Hero full-bleed** (`h-[78vh] min-h-[520px]`): foto principal de borde a borde del viewport, `object-cover`, gradient scrim del bg al transparente. Overlays absolute para el label de sección + "← Volver" arriba, y el título serif XXL abajo. La navbar (semi-transparente con backdrop-blur) queda flotando sobre el hero — efecto cinematográfico.
+  - **Spec strip** (`border-y border-white/10 py-8 lg:py-10`): banda full-width con 4 columnas `<dl>` mono uppercase — Categoría · Año · Código · Imágenes. Estilo ficha técnica F1. Cada `<Spec>` tiene `dt` (label en `text-ink-300` muy pequeño) y `dd` (valor en `text-ink-50`).
+  - **Resumen**: grid 12-cols asimétrico. Col-3 con SectionLabel "Resumen", col-8 offset con la descripción en serif grande (text-2xl/3xl). Placeholder italic "Descripción pendiente." mientras no se rellene en data.
+  - **Galería bento**: grid `lg:grid-cols-12 auto-rows-[260px] md:auto-rows-[280px] lg:auto-rows-[320px]` con spans variables. Patrón para 9 imágenes: 8/4 - 4/8 - 4/4/4 - 8/4 (4 rows). Cíclico para >9. `auto-rows` fija la altura — las imágenes usan `object-cover` y se recortan si hace falta. Cada tile es `<button>` que dispara el visor lightbox (mismo componente, no cambia).
+  - **Proceso · 04 fases**: sección con SectionLabel "Proceso · 04 fases" + headline serif "Del brief a la pieza, *en cuatro pasos*" (italic en "en cuatro pasos") + `<ol>` grid 4 cols con steps `01 BRIEF · 02 ESCANEO · 03 CAD/PRINT · 04 VALIDACIÓN`, cada uno con número en `text-accent`, label en `text-ink-100` y body en `text-ink-200`. Replicable en cualquier proyecto futuro sin cambios.
+  - **Siguiente proyecto**: bloque full-width con SectionLabel + título serif XL (text-5xl md:text-7xl) que va a lime al hover + flecha `→` que se desliza `translate-x-2` con el hover. Debajo, meta mono (categoría · año · código).
+  - **Estructura técnica**: cada bloque es su propio `<section>` con border-t/b independientes; el hero rompe el `max-w-6xl` (full-bleed), el resto mantiene contenedor.
+- **2026-05-25 (noche) — Visor de galería (lightbox custom):**
+  - Nuevo componente cliente `components/Gallery.tsx` (`"use client"`). Sustituye los `<a target="_blank">` de los thumbnails por un visor in-page.
+  - **Trigger**: click en cualquier thumbnail abre overlay full-screen (`fixed inset-0 z-[60] bg-ink-900/95 backdrop-blur-md`).
+  - **Navegación**: botones laterales `ChevronLeft`/`ChevronRight` (lucide) con loop circular, también teclado `←` `→`.
+  - **Cierre**: X arriba-derecha, ESC, o click fuera de la foto. Click sobre la foto NO cierra (stopPropagation).
+  - **Contador**: `03 / 09` arriba-izquierda en mono uppercase.
+  - **Foto**: `object-contain` para que se vea entera, `max-w-6xl max-h-[85vh]`.
+  - **Scroll lock**: `document.body.style.overflow = "hidden"` mientras está abierto. Restaurado al cerrar.
+  - **A11y**: `role="dialog" aria-modal="true" aria-label`, todos los botones con `aria-label`.
+  - **Hover thumbnails**: `cursor-zoom-in` + sutil `scale-[1.03]` con `transition-transform duration-500`.
+  - Decisión consciente de NO incluir focus trap (el modal funciona con ESC + teclado básico, focus trap añade complejidad — añadir solo si surge en uso real).
+  - La imagen principal del top de la página de detalle NO es clickable (de momento) — el usuario puede scrollear a la galería para abrir el visor. Si se quiere clickable, requiere lift state o context — escalado a iteración futura.
+- **2026-05-25 (tarde) — Página de detalle por proyecto (`/proyectos/[slug]`):**
+  - Nueva ruta dinámica `app/proyectos/[slug]/page.tsx` con `generateStaticParams` (build estático, Vercel cachea).
+  - `Project` type añade `slug?: string`. Renault y Porsche reciben slug + `year: "2026"`.
+  - **Portfolio refactor**: `ProjectCard` extraído como sub-componente. Tarjetas con `slug` van envueltas en `<Link>` (cursor pointer, título cambia a lime al hover). Sin slug = placeholder sin link, flecha ↗ oculta para no engañar.
+  - **Detalle page**: SectionLabel `Proyectos / [code]` + "← Volver" arriba, título serif grande, meta mono (categoría · año), foto principal aspect 16:10, bloque Descripción (placeholder italic "Descripción pendiente" mientras no se rellene en data), banda Galería con grid de todas las imágenes (click abre el original en nueva pestaña), footer con "Siguiente proyecto →".
+  - Para el Renault 11 Turbo: 9 fotos en `public/projects/renault-11-turbo/`, principal `IMG_20260414_154518.jpg`, las 9 listadas en `images[]` para la galería.
+  - Para el Porsche 924 Turbo: slug y year, sin imagen ni galería todavía. La página de detalle existirá pero estará casi vacía.
+- **2026-05-25 (sesión tarde) — Iconos sociales del Contact equiparados al Navbar:**
+  - `WallapopIcon` extraído de `Navbar.tsx` a su propio archivo `components/WallapopIcon.tsx` (reutilizable). Navbar lo importa, ya no contiene la función local.
+  - **Contact**: los pills de texto (Instagram · Wallapop · WhatsApp) sustituidos por **3 botones-icono circulares** con el mismo patrón que el navbar: `w-10 h-10 rounded-full bg-white/[0.06] border border-white/10`, hover a color de marca + `text-white` + `scale-110` con `transition-all duration-300`.
+  - Tamaño en Contact: 40px (vs 32px del navbar) — la sección tiene más espacio y los iconos ganan presencia. Icono interior `w-5 h-5`.
+  - Orden en Contact: WhatsApp → Instagram → Wallapop (mismo que en el navbar para consistencia, aunque `contact.social` en data sigue en orden Instagram-Wallapop-WhatsApp).
+  - Hover por icono: WhatsApp `#25D366` · Instagram gradiente `#F58529 → #DD2A7B → #8134AF` · Wallapop `#13C1AC`.
 - **2026-05-25 (sesión tarde) — Polish C: hairlines uniformes en todas las transiciones de sección:**
   - **Border weight unificado:** `border-white/5` → `border-white/10` en Services, Portfolio, Contact y Footer. Mismo peso visible que la banda Stats — las rayitas se perciben como decisión editorial, no accidente.
   - **Padding superior comprimido:** `py-24 lg:py-32` → `pt-10 lg:pt-14 pb-24 lg:pb-32` en About, Services, Portfolio y Contact. La SectionLabel se acerca al divider (~40-56px abajo de la línea, antes ~96-128px). Sensación de "label adherida a la frontera".

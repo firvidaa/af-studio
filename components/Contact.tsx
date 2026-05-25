@@ -1,5 +1,7 @@
+import { SiInstagram, SiWhatsapp } from "react-icons/si";
 import { contact } from "@/lib/data";
 import { SectionLabel } from "./SectionLabel";
+import { WallapopIcon } from "./WallapopIcon";
 
 export function Contact() {
   return (
@@ -39,17 +41,33 @@ export function Contact() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {contact.social.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-mono text-[11px] uppercase tracking-[0.15em] px-4 py-2 rounded-full border border-white/10 text-ink-100 hover:bg-white/5 transition-colors"
-                >
-                  {s.label}
-                </a>
-              ))}
+              <a
+                href="https://wa.me/34694295842"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="WhatsApp"
+                className="group inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 text-ink-50 shadow-sm transition-all duration-300 ease-out hover:scale-110 hover:bg-[#25D366] hover:text-white hover:border-transparent"
+              >
+                <SiWhatsapp className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/afirvida.studio?igsh=MjNycmtwdWhwdm12"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Mi perfil de Instagram"
+                className="group inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 text-ink-50 shadow-sm transition-all duration-300 ease-out hover:scale-110 hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] hover:text-white hover:border-transparent"
+              >
+                <SiInstagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://es.wallapop.com/user/alfredof-303495134"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Mi perfil de Wallapop"
+                className="group inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 text-ink-50 shadow-sm transition-all duration-300 ease-out hover:scale-110 hover:bg-[#13C1AC] hover:text-white hover:border-transparent"
+              >
+                <WallapopIcon className="w-5 h-5" />
+              </a>
             </div>
           </div>
 

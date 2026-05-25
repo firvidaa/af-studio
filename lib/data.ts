@@ -8,7 +8,9 @@ export type Project = {
   code: string;
   category: string;
   title: string;
-  placeholder?: boolean;
+  slug?: string;
+  image?: string;
+  images?: string[];
   href?: string;
   year?: string;
   description?: string;
@@ -53,37 +55,47 @@ export const projects: Project[] = [
     code: "P-01 · 3DS-001",
     category: "Restauración",
     title: "Renault 11 Turbo",
-    placeholder: true,
+    slug: "renault-11-turbo",
+    year: "2026",
+    image: "/projects/renault-11-turbo/IMG_20260414_154518.jpg",
+    images: [
+      "/projects/renault-11-turbo/IMG_20260414_154518.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154407.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154425.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154440.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154454.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154505.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154523.jpg",
+      "/projects/renault-11-turbo/IMG_20260414_154539.jpg",
+      "/projects/renault-11-turbo/IMG_20260417_113402_265.webp",
+    ],
   },
   {
     code: "P-02 · 3DS-002",
     category: "Restauración",
     title: "Porsche 924 Turbo",
-    placeholder: true,
+    slug: "porsche-924-turbo",
+    year: "2026",
   },
   {
     code: "P-03 · AERO-001",
     category: "Aero",
     title: "Próximo proyecto",
-    placeholder: true,
   },
   {
     code: "P-04 · INT-001",
     category: "Interior",
     title: "Próximo proyecto",
-    placeholder: true,
   },
   {
     code: "P-05 · CHA-001",
     category: "Chasis",
     title: "Próximo proyecto",
-    placeholder: true,
   },
   {
     code: "P-06 · MEC-001",
     category: "Mecánico",
     title: "Próximo proyecto",
-    placeholder: true,
   },
 ];
 
