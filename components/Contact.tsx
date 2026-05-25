@@ -3,12 +3,12 @@ import { SectionLabel } from "./SectionLabel";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24 lg:py-32 border-t border-white/5">
+    <section id="contact" className="border-t border-white/10 pt-10 lg:pt-14 pb-24 lg:pb-32">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
             <SectionLabel>Contacto · Abierto T26</SectionLabel>
-            <h2 className="mt-6 font-serif text-4xl md:text-6xl font-medium tracking-tight leading-[1.02]">
+            <h2 className="mt-10 lg:mt-12 font-serif text-4xl md:text-6xl font-medium tracking-tight leading-[1.02]">
               <em className="italic">Hablemos.</em>
               <br />
               Cuéntanos en qué trabajas.

@@ -93,6 +93,12 @@ highlight #00A88A   verde claro (glow del hero)
   - **Hero**: `pb` reducido de `pb-24 lg:pb-32` → `pb-12 lg:pb-16`.
   - **About**: ya no tiene `border-t border-white/5` (la banda Stats lo cumple). Padding cambiado de `py-24 lg:py-32` → `pt-16 lg:pt-24 pb-24 lg:pb-32`.
   - Resultado: la banda hace de bisagra editorial entre Hero y About en vez de stats orphan con ~256px de vacío detrás. Móvil queda igual de bien (no se tocó).
+- **2026-05-25 (sesión tarde) — Polish C: hairlines uniformes en todas las transiciones de sección:**
+  - **Border weight unificado:** `border-white/5` → `border-white/10` en Services, Portfolio, Contact y Footer. Mismo peso visible que la banda Stats — las rayitas se perciben como decisión editorial, no accidente.
+  - **Padding superior comprimido:** `py-24 lg:py-32` → `pt-10 lg:pt-14 pb-24 lg:pb-32` en About, Services, Portfolio y Contact. La SectionLabel se acerca al divider (~40-56px abajo de la línea, antes ~96-128px). Sensación de "label adherida a la frontera".
+  - **Más aire entre label y h2:** `mt-6` → `mt-10 lg:mt-12` en los h2 de About, Services, Portfolio y Contact. Compensa el padding perdido arriba y da respiración al titular.
+  - About también ajusta su `pt-16 lg:pt-24` → `pt-10 lg:pt-14` por consistencia (aunque no tiene `border-t` — la `border-b` de Stats arriba la sirve).
+  - Resultado: ritmo editorial idéntico en las 5 transiciones (Hero→Stats→About→Services→Portfolio→Contact→Footer). Sin añadir contenido nuevo, solo afinando el sistema existente.
 - **2026-05-25 — Banda Stats: líneas full-width y padding simétrico:**
   - Iteración 1 (descartada): hairlines individuales arriba de cada stat (4 cortas) → usuario pidió línea continua.
   - Iteración 2 (descartada): `border-t` movido al grid container → línea continua pero confinada al `max-w-6xl` (no llega a los bordes del viewport como la `border-b` de la sección).

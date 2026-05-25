@@ -3,12 +3,12 @@ import { SectionLabel } from "./SectionLabel";
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="py-24 lg:py-32 border-t border-white/5">
+    <section id="portfolio" className="border-t border-white/10 pt-10 lg:pt-14 pb-24 lg:pb-32">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <SectionLabel>Proyectos · 03</SectionLabel>
-            <h2 className="mt-6 font-serif text-4xl md:text-5xl font-medium tracking-tight leading-[1.05] max-w-2xl">
+            <h2 className="mt-10 lg:mt-12 font-serif text-4xl md:text-5xl font-medium tracking-tight leading-[1.05] max-w-2xl">
               Trabajos
               <br />
               <em className="italic">seleccionados</em>.
