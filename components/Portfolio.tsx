@@ -66,7 +66,14 @@ function ProjectCard({ project: p }: { project: Project }) {
             />
           </>
         ) : (
-          <div aria-hidden className="absolute inset-0 bg-carbon" />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(135deg, transparent 0 12px, rgba(240,245,241,0.06) 12px 13px)",
+            }}
+          />
         )}
 
         <div className="absolute top-4 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-100">

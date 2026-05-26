@@ -87,7 +87,7 @@ export default function ProjectPage({ params }: { params: Params }) {
           </div>
         </section>
 
-        <section className="bg-carbon border-t border-b border-white/10 py-8 lg:py-10">
+        <section className="border-t border-b border-white/10 py-8 lg:py-10">
           <div className="max-w-6xl mx-auto px-6 lg:px-10">
             <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4">
               <Spec label="Categoría" value={project.category} />
