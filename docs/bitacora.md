@@ -93,6 +93,19 @@ highlight #00A88A   verde claro (glow del hero)
   - **Hero**: `pb` reducido de `pb-24 lg:pb-32` → `pb-12 lg:pb-16`.
   - **About**: ya no tiene `border-t border-white/5` (la banda Stats lo cumple). Padding cambiado de `py-24 lg:py-32` → `pt-16 lg:pt-24 pb-24 lg:pb-32`.
   - Resultado: la banda hace de bisagra editorial entre Hero y About en vez de stats orphan con ~256px de vacío detrás. Móvil queda igual de bien (no se tocó).
+- **2026-05-25 (noche) — Detalle de fibra de carbono con tinte verde:**
+  - Nueva utility `.bg-carbon` en `app/globals.css`: pattern CSS-only de dos linear-gradients a 27°/207° con stripes en `rgba(0,102,94,0.22)` (accent racing green a 22%), tile 14×14px, segundo gradient offset 7px = trenzado tipo carbon-fiber 2×2 twill. Peso 0KB extra.
+  - **Aplicado como capa estática** en:
+    - **Stats band** del home (`<section bg-carbon border-t border-b border-white/10>`) — refuerza el aire ficha técnica de las cifras.
+    - **Spec strip** del detail page — mismo patrón, coherencia entre home y detalle.
+    - **Portfolio placeholders** (cards sin imagen) — reemplaza las antiguas diagonal-stripes blancas por la textura de fibra. Más motorsport, menos "placeholder genérico".
+  - **Aplicado como reveal-on-hover** en:
+    - **Service cards** — `<div className="absolute inset-0 bg-carbon opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">` detrás del contenido. Card original tiene `overflow-hidden` + wrapper `<div className="relative">` para el contenido para que stacka encima del carbono. Al pasar el ratón, la fibra fade-in en 500ms.
+  - **Decisiones de intensidad/dirección** que se descartaron en la brainstorming:
+    - "Atmósfera global" (5-6% en toda la web) — demasiado sutil, no comunica nada.
+    - "Acento dramático en una sola zona" (Proceso · 40%) — demasiado loud, rompe ritmo.
+    - "Solo en borders" — pierde personalidad.
+  - Recolorear/cambiar intensidad en el futuro: editar `rgba(0,102,94,0.22)` en `.bg-carbon` (subir alpha a 0.3-0.4 para más presencia, o cambiar el color RGB).
 - **2026-05-25 (noche, redesign) — Página de detalle "Spec Sheet Editorial":**
   - Reescritura completa de `app/proyectos/[slug]/page.tsx` y galería en `components/Gallery.tsx` a bento.
   - **Hero full-bleed** (`h-[78vh] min-h-[520px]`): foto principal de borde a borde del viewport, `object-cover`, gradient scrim del bg al transparente. Overlays absolute para el label de sección + "← Volver" arriba, y el título serif XXL abajo. La navbar (semi-transparente con backdrop-blur) queda flotando sobre el hero — efecto cinematográfico.

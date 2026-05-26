@@ -24,25 +24,31 @@ export function Services() {
           {services.map((service, idx) => (
             <li
               key={service.title}
-              className="group relative p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-colors"
+              className="group relative overflow-hidden p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-colors"
             >
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-6">
-                0{idx + 1} / Servicio
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-carbon opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              />
+              <div className="relative">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-6">
+                  0{idx + 1} / Servicio
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl font-medium tracking-tight leading-tight mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-ink-200 leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-2 text-sm text-ink-100">
+                  {service.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2">
+                      <span className="text-accent mt-1 font-mono">+</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="font-serif text-2xl md:text-3xl font-medium tracking-tight leading-tight mb-4">
-                {service.title}
-              </h3>
-              <p className="text-ink-200 leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <ul className="space-y-2 text-sm text-ink-100">
-                {service.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2">
-                    <span className="text-accent mt-1 font-mono">+</span>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
             </li>
           ))}
         </ul>
